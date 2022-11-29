@@ -36,9 +36,8 @@ jobs:
           username: ${{ secrets.USER }}
           port: ${{ secrets.PORT }}
           script: |
-            ls
-#            cd ~/app/docker_empty
-#            sh deploy.sh
+            cd ~/app/docker_empty
+            sh deploy.sh
       - name: Remove Github Actions IP in Security Group
         run: |
           aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32  
