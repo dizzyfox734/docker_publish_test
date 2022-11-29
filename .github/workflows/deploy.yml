@@ -6,8 +6,16 @@ on:
       - master
 
 jobs:
+  ip:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ip addr
+      - run: ifconfig
+      - run: hostname -I
+  
   deploy:
     runs-on: ubuntu-latest
+    needs: ip
     steps:
       - uses: actions/checkout@v3
       - name: Run build in server
